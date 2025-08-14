@@ -1,8 +1,6 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.*;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Path2D;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -25,7 +23,7 @@ public class Assignment1 extends JPanel implements Runnable{
         f.add(m); // add panel to frame
         f.setTitle("ASSIGNMENT 1 : WHAT IF I REBORNED"); // title
         f.setSize(600, 600); // set size
-        f.setResizable(false); // make it unresizable
+        f.setResizable(true); // make it unresizable
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // make it close when exit
         f.setVisible(true); // make it visible
 
@@ -44,42 +42,102 @@ public class Assignment1 extends JPanel implements Runnable{
             elapsedTime = currentTime - lastTime;
             lastTime = currentTime;
 
-            // Update
+            // Update logic
 
             // Display
             repaint();
+
+            // Control frame rate (adjust sleep time as needed)
+            try {
+                Thread.sleep(16); // ~60 FPS
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     @Override
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);
+         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-
-        // Set rendering hints for better quality
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        // Save the original transformation
-        AffineTransform originalTransform = g2d.getTransform();
+        // Call your drawing methods here
+        pic1(g2d);
+    }
 
-        // Translate to the desired starting point
-        g2d.translate(365.14, 274.49);
+    private void pic1(Graphics2D g2d) {
+        g2d.translate(173.33, 600);
+        bezierCurve(g2d, 0, 0, -0.9, -2.36, -2.7, -4.09, -3.85, -6.4, 1);
+        bezierCurve(g2d, BOTTOM_ALIGNMENT, WIDTH, SOMEBITS, PROPERTIES, HEIGHT, FRAMEBITS, ERROR, ALLBITS, ABORT);
+    }
 
-        // Draw the cubic bezier curve with bezierCurve
-        g2d.setColor(Color.WHITE);
-        g2d.setStroke(new BasicStroke(2)); // Set thickness of line
-        bezierCurve(g2d, 0, 0, -1, 0, -3, -1, -5, -1);
+    private void pic2(Graphics2D g2d) {
 
+    }
 
-        // Restore the original transformation
-        g2d.setTransform(originalTransform);
+    private void pic3(Graphics2D g2d) {
+        
+    }
+
+    private void pic4(Graphics2D g2d) {
+        
+    }
+
+    private void pic5(Graphics2D g2d) {
+        
+    }
+
+    private void pic6(Graphics2D g2d) {
+        
+    }
+
+    private void pic7(Graphics2D g2d) {
+        
+    }
+
+    private void pic8(Graphics2D g2d) {
+        
+    }
+
+    private void pic9(Graphics2D g2d) {
+        
+    }
+
+    private void pic10(Graphics2D g2d) {
+        
+    }
+
+    private void pic11(Graphics2D g2d) {
+        
+    }
+
+    private void pic12(Graphics2D g2d) {
+        
     }
 
     private void plot(Graphics g, int x, int y, int size) {
         g.fillRect(x, y, size, size);
     }
 
-    private void bresenhamLine(Graphics g, int x1, int y1, int x2, int y2) {
+    
+    private void bezierCurve(Graphics2D g2, double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4, int size) {
+        for (double t = 0; t <= 1; t += 0.001) {
+            double xt = Math.pow(1 - t, 3) * x1 +
+            3 * Math.pow(1 - t, 2) * t * x2 +
+            3 * (1 - t) * Math.pow(t, 2) * x3 +
+            Math.pow(t, 3) * x4;
+            
+            double yt = Math.pow(1 - t, 3) * y1 +
+            3 * Math.pow(1 - t, 2) * t * y2 +
+            3 * (1 - t) * Math.pow(t, 2) * y3 +
+            Math.pow(t, 3) * y4;
+
+            g2.fillRect((int) Math.round(xt), (int) Math.round(yt), size, size);
+        }
+    }
+
+    private void bresenhamLine(Graphics2D g, int x1, int y1, int x2, int y2) {
 
         int dx = Math.abs(x2 - x1);
         int dy = Math.abs(y2 - y1);
@@ -100,7 +158,7 @@ public class Assignment1 extends JPanel implements Runnable{
         int y = y1;
 
         for (int i = 1; i <= dx; i++) {
-            plot(g, x, y, 5);
+            plot(g, x, y, 1);
             if (D >= 0) {
                 if (isSwap) {
                     x += sx;
@@ -120,34 +178,6 @@ public class Assignment1 extends JPanel implements Runnable{
             }
 
             D += 2 * dy;
-        }
-    }
-
-    public static void bezierCurve(Graphics g, int[] controlsPointX, int[] controlsPointY, int size) {
-        double t = 0;
-        int xt;
-        int yt;
-        if (controlsPointX.length == 4) {
-            for (; t <= 1; t += 0.001) {
-                xt = (int) (Math.pow(1 - t, 3) * controlsPointX[0] + 3 * t * Math.pow(1 - t, 2) * controlsPointX[1]
-                        + 3 * t * t * Math.pow(1 - t, 1) * controlsPointX[2] + t * t * t * controlsPointX[3]);
-
-                yt = (int) (Math.pow(1 - t, 3) * controlsPointY[0] + 3 * t * Math.pow(1 - t, 2) * controlsPointY[1]
-                        + 3 * t * t * Math.pow(1 - t, 1) * controlsPointY[2] + t * t * t * controlsPointY[3]);
-
-                plot(g, xt, yt, size);
-            }
-        } else {
-            for (; t <= 1; t += 0.001) {
-                xt = (int) (Math.pow(1 - t, 2) * controlsPointX[0] + 2 * t * Math.pow(1 - t, 1) * controlsPointX[1]
-                        + t * t * controlsPointX[2]);
-
-                yt = (int) (Math.pow(1 - t, 2) * controlsPointY[0] + 2 * t * Math.pow(1 - t, 1) * controlsPointY[1]
-                        + t * t * controlsPointY[2]);
-
-                plot(g, xt, yt, size);
-            }
-
         }
     }
 
