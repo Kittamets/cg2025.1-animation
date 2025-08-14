@@ -3,8 +3,7 @@ import java.util.regex.Pattern;
 
 public class SvgPathParser {
 
-    // Method สำหรับแปลง SVG path string ให้เป็นคำสั่ง Java ที่ใช้ได้ใน
-    // paintComponent
+    // Method สำหรับแปลง SVG path string ให้เป็นคำสั่ง Java ที่ใช้ได้ใน paintComponent
     public static String parseSVGPathToJavaCode(String svgPath) {
         StringBuilder javaCode = new StringBuilder();
 
@@ -73,23 +72,6 @@ public class SvgPathParser {
                             Double.parseDouble(values[0])));
                     currentX += Double.parseDouble(values[0]);
                     javaCode.append(String.format("currentX = %f;\n", currentX));
-                    break;
-
-                case "Z": // Close Path (close the path and translate back to start point with conditions)
-                    // เพิ่มเงื่อนไขสำหรับการ translate กลับ
-                    if (currentX > 0 && currentY > 0) {
-                        javaCode.append(String.format("g2d.translate(-%f, -%f); // Returning to start point\n",
-                                currentX, currentY));
-                    } else if (currentX > 0 && currentY < 0) {
-                        javaCode.append(String.format("g2d.translate(-%f, %f); // Returning to start point\n", currentX,
-                                currentY));
-                    } else if (currentX < 0 && currentY > 0) {
-                        javaCode.append(String.format("g2d.translate(%f, -%f); // Returning to start point\n", currentX,
-                                currentY));
-                    } else if (currentX < 0 && currentY < 0) {
-                        javaCode.append(String.format("g2d.translate(-%f, -%f); // Returning to start point\n",
-                                currentX, currentY));
-                    }
                     break;
 
                 default:
