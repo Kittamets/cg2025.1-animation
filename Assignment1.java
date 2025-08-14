@@ -1,9 +1,9 @@
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import java.util.Queue;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /*
 * 05506014 Computer Graphics
@@ -73,7 +73,7 @@ public class Assignment1 extends JPanel implements Runnable{
     }
 
     private void pic2(Graphics2D g2d) {
-
+        // test add and commit
     }
 
     private void pic3(Graphics2D g2d) {
