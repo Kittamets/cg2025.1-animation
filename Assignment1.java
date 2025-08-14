@@ -1,6 +1,8 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Path2D;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -51,7 +53,26 @@ public class Assignment1 extends JPanel implements Runnable{
 
     @Override
     public void paintComponent(Graphics g) {
-        
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+
+        // Set rendering hints for better quality
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        // Save the original transformation
+        AffineTransform originalTransform = g2d.getTransform();
+
+        // Translate to the desired starting point
+        g2d.translate(365.14, 274.49);
+
+        // Draw the cubic bezier curve with bezierCurve
+        g2d.setColor(Color.WHITE);
+        g2d.setStroke(new BasicStroke(2)); // Set thickness of line
+        bezierCurve(g2d, 0, 0, -1, 0, -3, -1, -5, -1);
+
+
+        // Restore the original transformation
+        g2d.setTransform(originalTransform);
     }
 
     private void plot(Graphics g, int x, int y, int size) {
@@ -102,22 +123,31 @@ public class Assignment1 extends JPanel implements Runnable{
         }
     }
 
-    private void bezierCurve (Graphics g, int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) {
-        
-        for (double t = 0; t <= 1; t += 0.001) {
+    public static void bezierCurve(Graphics g, int[] controlsPointX, int[] controlsPointY, int size) {
+        double t = 0;
+        int xt;
+        int yt;
+        if (controlsPointX.length == 4) {
+            for (; t <= 1; t += 0.001) {
+                xt = (int) (Math.pow(1 - t, 3) * controlsPointX[0] + 3 * t * Math.pow(1 - t, 2) * controlsPointX[1]
+                        + 3 * t * t * Math.pow(1 - t, 1) * controlsPointX[2] + t * t * t * controlsPointX[3]);
 
-            int x = (int) (Math.pow(1-t, 3) * x1 + 
-                    3 * t * Math.pow(1-t, 2) * x2 + 
-                    3 * Math.pow(t, 2) * (1 - t) * x3 +
-                    Math.pow(t, 3) * x4);
+                yt = (int) (Math.pow(1 - t, 3) * controlsPointY[0] + 3 * t * Math.pow(1 - t, 2) * controlsPointY[1]
+                        + 3 * t * t * Math.pow(1 - t, 1) * controlsPointY[2] + t * t * t * controlsPointY[3]);
 
-            int y = (int) (Math.pow(1-t, 3) * y1 + 
-                    3 * t * Math.pow(1-t, 2) * y2 + 
-                    3 * Math.pow(t, 2) * (1 - t) * y3 +
-                    Math.pow(t, 3) * y4);
+                plot(g, xt, yt, size);
+            }
+        } else {
+            for (; t <= 1; t += 0.001) {
+                xt = (int) (Math.pow(1 - t, 2) * controlsPointX[0] + 2 * t * Math.pow(1 - t, 1) * controlsPointX[1]
+                        + t * t * controlsPointX[2]);
 
-            plot(g, x, y, 3);
-        
+                yt = (int) (Math.pow(1 - t, 2) * controlsPointY[0] + 2 * t * Math.pow(1 - t, 1) * controlsPointY[1]
+                        + t * t * controlsPointY[2]);
+
+                plot(g, xt, yt, size);
+            }
+
         }
     }
 
