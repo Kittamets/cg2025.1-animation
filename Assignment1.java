@@ -67,9 +67,7 @@ public class Assignment1 extends JPanel implements Runnable{
     }
 
     private void pic1(Graphics2D g2d) {
-        g2d.translate(173.33, 600);
-        bezierCurve(g2d, 0, 0, -0.9, -2.36, -2.7, -4.09, -3.85, -6.4, 1);
-        bezierCurve(g2d, BOTTOM_ALIGNMENT, WIDTH, SOMEBITS, PROPERTIES, HEIGHT, FRAMEBITS, ERROR, ALLBITS, ABORT);
+       
     }
 
     private void pic2(Graphics2D g2d) {
@@ -180,6 +178,59 @@ public class Assignment1 extends JPanel implements Runnable{
             D += 2 * dy;
         }
     }
+
+    private void bresenhamLine(Graphics2D g, double x1, double y1, double x2, double y2) {
+        // Calculate the differences
+        double dx = Math.abs(x2 - x1);
+        double dy = Math.abs(y2 - y1);
+
+        // Determine the step direction for x and y
+        double sx = (x1 < x2) ? 1 : -1;
+        double sy = (y1 < y2) ? 1 : -1;
+
+        boolean isSwap = false;
+
+        // Swap the variables if the slope is steeper than 1
+        if (dy > dx) {
+            double tmp = dx;
+            dx = dy;
+            dy = tmp;
+            isSwap = true;
+        }
+
+        // Calculate the initial decision variable
+        double D = 2 * dy - dx;
+
+        double x = x1;
+        double y = y1;
+
+        // Plot the points along the line
+        for (int i = 0; i <= dx; i++) {
+            // Convert x, y to integer for plotting
+            g.fillRect((int) Math.round(x), (int) Math.round(y), 3, 3);
+            // plot(g, Math.round(x), Math.round(y), 1);
+
+            // Update the decision variable
+            if (D >= 0) {
+                if (isSwap) {
+                    x += sx;  // Use sx to adjust x for a steep line
+                } else {
+                    y += sy;  // Use sy to adjust y for a shallow line
+                }
+                D -= 2 * dx;
+            }
+
+            // Update x or y based on the slope
+            if (isSwap) {
+                y += sy;
+            } else {
+                x += sx;
+            }
+
+            D += 2 * dy;
+        }
+    }
+
 
     private BufferedImage floodFill(BufferedImage m, int x, int y, Color targetColor, Color replaceColor) {
         
