@@ -58,12 +58,18 @@ public class Assignment1 extends JPanel implements Runnable {
 
     @Override
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        BufferedImage buffer = new BufferedImage(601, 601, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = buffer.createGraphics();
 
-        // Call your drawing methods here
+        g2d.setColor(Color.WHITE);
+        g2d.fillRect(0, 0, 600, 600);
+        g2d.setColor(Color.BLACK);
+
+        // Drawing and coloring frame
         pic1(g2d);
+        pic1Color(buffer);
+
+        g.drawImage(buffer, 0, 0, null);
     }
 
     private void pic1(Graphics2D g2d) {
@@ -1076,6 +1082,43 @@ public class Assignment1 extends JPanel implements Runnable {
 
     }
 
+    private void pic1Color(BufferedImage buffer) {
+        buffer = floodFill(buffer, 339, 220, Color.WHITE, Color.BLACK);
+    };
+    private void pic2Color(BufferedImage buffer) {
+
+    };
+    private void pic3Color(BufferedImage buffer) {
+
+    };
+    private void pic4Color(BufferedImage buffer) {
+
+    };
+    private void pic5Color(BufferedImage buffer) {
+
+    };
+    private void pic6Color(BufferedImage buffer) {
+
+    };
+    private void pic7Color(BufferedImage buffer) {
+
+    };
+    private void pic8Color(BufferedImage buffer) {
+
+    };
+    private void pic9Color(BufferedImage buffer) {
+
+    };
+    private void pic10Color(BufferedImage buffer) {
+
+    };
+    private void pic11Color(BufferedImage buffer) {
+
+    };
+    private void pic12Color(BufferedImage buffer) {
+        
+    };
+
     private void plot(Graphics g, int x, int y, int size) {
         g.fillRect(x, y, size, size);
     }
@@ -1191,52 +1234,52 @@ public class Assignment1 extends JPanel implements Runnable {
         }
     }
 
-    private BufferedImage floodFill(BufferedImage m, int x, int y, Color targetColor, Color replaceColor) {
+    public static BufferedImage floodFill(BufferedImage m, int x, int y, Color targetColor, Color replaceColor) {
+        Queue<int[]> q = new LinkedList<>();
+        q.add(new int[] { x, y });
 
-        Graphics2D g2 = m.createGraphics(); // สร้างปากกาขึ้นจากรูป
-        Queue<Point> q = new LinkedList<>();
+        int targetRGB = targetColor.getRGB();
+        int replaceRGB = replaceColor.getRGB();
 
-        if (m.getRGB(x, y) == targetColor.getRGB()) {
-            g2.setColor(replaceColor);
-            plot(g2, x, y, 1);
-            q.add(new Point(x, y));
-        }
-
+        int[] currentPos;
         while (!q.isEmpty()) {
-            Point p = q.poll();
+            currentPos = q.poll();
 
-            // south
-            if (p.y < 600 && m.getRGB(p.x, p.y + 1) == targetColor.getRGB()) {
-                g2.setColor(replaceColor);
-                plot(g2, p.x, p.y + 1, 1);
-                q.add(new Point(p.x, p.y + 1));
+            int x1 = currentPos[0];
+            int y1 = currentPos[1];
+
+            if (m.getRGB(x1, y1) == targetRGB) {
+                m.setRGB(x1, y1, replaceRGB);
+
+                // south
+                if (isInBound(x1, y1 + 1) && m.getRGB(x1, y1 + 1) == targetRGB) {
+                    q.add(new int[] { x1, y1 + 1 });
+                }
+
+                // north
+                if (isInBound(x1, y1 - 1) && m.getRGB(x1, y1 - 1) == targetRGB) {
+                    q.add(new int[] { x1, y1 - 1 });
+                }
+
+                // east
+                if (isInBound(x1 + 1, y1) && m.getRGB(x1 + 1, y1) == targetRGB) {
+                    q.add(new int[] { x1 + 1, y1 });
+                }
+
+                // west
+                if (isInBound(x1 - 1, y1) && m.getRGB(x1 - 1, y1) == targetRGB) {
+                    q.add(new int[] { x1 - 1, y1 });
+                }
             }
-
-            // north
-            if (p.y > 0 && m.getRGB(p.x, p.y - 1) == targetColor.getRGB()) {
-                g2.setColor(replaceColor);
-                plot(g2, p.x, p.y - 1, 1);
-                q.add(new Point(p.x, p.y - 1));
-            }
-
-            // west
-            if (p.x > 0 && m.getRGB(p.x - 1, p.y) == targetColor.getRGB()) {
-                g2.setColor(replaceColor);
-                plot(g2, p.x - 1, p.y, 1);
-                q.add(new Point(p.x - 1, p.y));
-            }
-
-            // east
-            if (p.x < 600 && m.getRGB(p.x + 1, p.y) == targetColor.getRGB()) {
-                g2.setColor(replaceColor);
-                plot(g2, p.x + 1, p.y, 1);
-                q.add(new Point(p.x + 1, p.y));
-            }
-
         }
 
         return m;
     }
+
+    public static boolean isInBound(int x, int y) {
+        return x >= 0 && y > 0 && x < 601 && y < 601;
+    }
+
 
     private void midpointEllipse(Graphics g, int xc, int yc, int a, int b) {
         int x, y, d;

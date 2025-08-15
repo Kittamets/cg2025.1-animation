@@ -1,0 +1,21 @@
+# Ignore Java build output directories
+/bin/
+/build/
+/out/
+
+# Ignore Java JAR files
+*.jar
+
+# Ignore log files
+*.log
+
+# Ignore temporary files
+*.tmp
+*.swp
+*.swo
+
+# Ignore Java class files
+*.class
+
+# Ignore VS Code settings
+.vscode/
