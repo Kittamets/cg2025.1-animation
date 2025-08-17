@@ -74,59 +74,77 @@ public class Assignment1 extends JPanel implements Runnable {
                 g2d.fillRect(0, 0, 600, 600);
                 g2d.setColor(Color.BLACK);
 
-                // Drawing and coloring frame
+                //Drawing and coloring frame
                 if (elapsedSeconds < 0.5) {
                         pic1(g2d);
+                        pic1Color(buffer);
                 } else if (elapsedSeconds < 1.0) {
                         pic2(g2d);
+                        pic2Color(buffer);
                 } else if (elapsedSeconds < 1.5) {
                         pic3(g2d);
+                        pic3Color(buffer);
                 } else if (elapsedSeconds < 2.0) {
                         pic4(g2d);
+                        pic4Color(buffer);
                 } else if (elapsedSeconds < 2.5) {
                         pic5(g2d);
+                        pic5Color(buffer);
                 } else if (elapsedSeconds < 3.0) {
                         pic6(g2d);
+                        pic6Color(buffer);
                 } else if (elapsedSeconds < 3.5) {
                         pic5(g2d);
+                        pic5Color(buffer);
                 } else if (elapsedSeconds < 4.0) {
                         pic6(g2d);
+                        pic6Color(buffer);
                 } else if (elapsedSeconds < 4.5) {
                         pic5(g2d);
+                        pic5Color(buffer);
                 } else if (elapsedSeconds < 5.0) {
                         pic6(g2d);
+                        pic6Color(buffer);
                 } else if (elapsedSeconds < 5.5) {
                         pic7(g2d);
+                        pic7Color(buffer);
                 } else if (elapsedSeconds < 6.0) {
                         pic8(g2d);
+                        pic8Color(buffer);
                 } else if (elapsedSeconds < 7.0) {
                         pic9(g2d);
+                        pic9Color(buffer);
                 } else if (elapsedSeconds < 7.5) {
                         pic8(g2d);
+                        pic8Color(buffer);
                 } else if (elapsedSeconds < 8.5) {
                         pic10(g2d);
+                        pic10Color(buffer);
                 } else if (elapsedSeconds < 9.0) {
                         pic8(g2d);
+                        pic8Color(buffer);
                 } else if (elapsedSeconds < 10.0) {
                         pic11(g2d);
+                        pic11Color(buffer);
                 } else if (elapsedSeconds < 11.0) {
                         pic12(g2d);
+                        pic12Color(buffer);
                 } else {
                         elapsedSeconds = 0; // Reset timer
                 }
 
-                // pic1(g2d);
-                // pic2(g2d);
-                // pic3(g2d);
-                // pic4(g2d);
-                // pic5(g2d);
-                // pic6(g2d);
-                // pic7(g2d);
-                // pic8(g2d);
-                // pic9(g2d);
-                // pic10(g2d);
-                // pic11(g2d);
-                // pic12(g2d);
+                // pic1(g2d); pic1Color(buffer);
+                // pic2(g2d); pic2Color(buffer);
+                // pic3(g2d); pic3Color(buffer);
+                // pic4(g2d); pic4Color(buffer);
+                // pic5(g2d); pic5Color(buffer);
+                // pic6(g2d); pic6Color(buffer);
+                // pic7(g2d); pic7Color(buffer);
+                // pic8(g2d); pic8Color(buffer);
+                // pic9(g2d); pic9Color(buffer);
+                // pic10(g2d); pic10Color(buffer);
+                // pic11(g2d); pic11Color(buffer);
+                // pic12(g2d); pic12Color(buffer);
 
                 g.drawImage(buffer, 0, 0, null);
         }
@@ -12602,51 +12620,328 @@ public class Assignment1 extends JPanel implements Runnable {
         }
 
         private void pic1Color(BufferedImage buffer) {
+                // hair
                 buffer = floodFill(buffer, 339, 220, Color.WHITE, Color.DARK_GRAY);
-        };
+                buffer = floodFill(buffer, 324, 228, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 360, 225, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 372, 234, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 378, 252, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 369, 252, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 375, 273, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 300, 240, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 308, 252, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 288, 252, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 354, 216, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 282, 324, Color.WHITE, Color.DARK_GRAY);
+
+                // eye
+                buffer = floodFill(buffer, 318, 288, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 357, 288, Color.WHITE, Color.DARK_GRAY);
+                
+                // jacket
+                buffer = floodFill(buffer, 240, 420, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 201, 417, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 216, 432, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 288, 369, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 378, 414, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 366, 459, Color.WHITE, Color.DARK_GRAY);
+
+                // shirt
+                buffer = floodFill(buffer, 333, 414, Color.WHITE, Color.BLACK);
+
+                // background
+                buffer = floodFill(buffer, 10, 10, Color.WHITE, Color.GRAY);
+
+        }
 
         private void pic2Color(BufferedImage buffer) {
+                // hair
+                buffer = floodFill(buffer, 357, 243, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 342, 252, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 369, 258, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 384, 261, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 318, 261, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 306, 279, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 326, 279, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 384, 282, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 383, 297, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 389, 270, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 384, 250, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 369, 237, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 309, 228, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 290, 335, Color.WHITE, Color.DARK_GRAY);
+                
+                // jacket
+                buffer = floodFill(buffer, 260, 400, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 204, 405, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 216, 459, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 198, 555, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 294, 375, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 372, 408, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 390, 490, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 367, 460, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 372, 465, Color.WHITE, Color.DARK_GRAY);
+
+                // shirt
+                buffer = floodFill(buffer, 333, 429, Color.WHITE, Color.BLACK);
+
+                // background
+                buffer = floodFill(buffer, 10, 10, Color.WHITE, Color.GRAY);
 
         };
 
         private void pic3Color(BufferedImage buffer) {
+                // hair
+                buffer = floodFill(buffer, 360, 246, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 375, 255, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 381, 264, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 384, 281, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 383, 303, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 390, 273, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 387, 255, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 369, 243, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 345, 255, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 324, 264, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 329, 280, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 306, 276, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 291, 240, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 291, 337, Color.WHITE, Color.DARK_GRAY);
+                
+                // jacket
+                buffer = floodFill(buffer, 264, 414, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 294, 381, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 199, 414, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 219, 414, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 216, 522, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 381, 417, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 387, 522, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 369, 465, Color.WHITE, Color.DARK_GRAY);
+
+                // shirt
+                buffer = floodFill(buffer, 330, 417, Color.WHITE, Color.BLACK);
+
+                // background
+                buffer = floodFill(buffer, 10, 10, Color.WHITE, Color.GRAY);
 
         };
 
         private void pic4Color(BufferedImage buffer) {
+                // hair
+                buffer = floodFill(buffer, 369, 258, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 387, 270, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 393, 282, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 393, 303, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 390, 315, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 395, 273, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 379, 258, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 354, 273, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 333, 276, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 333, 294, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 315, 290, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 324, 240, Color.WHITE, Color.DARK_GRAY);
+                
+                // jacket
+                buffer = floodFill(buffer, 284, 360, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 261, 390, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 216, 423, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 222, 459, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 240, 405, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 288, 469, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 309, 426, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 309, 405, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 387, 417, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 372, 466, Color.WHITE, Color.DARK_GRAY);
+                
+                // shirt
+                buffer = floodFill(buffer, 333, 420, Color.WHITE, Color.BLACK);
 
+                // background
+                buffer = floodFill(buffer, 10, 10, Color.WHITE, Color.GRAY);
         };
 
         private void pic5Color(BufferedImage buffer) {
+                // hair
+                buffer = floodFill(buffer, 180, 60, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 42, 60, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 6, 414, Color.WHITE, Color.DARK_GRAY);
 
+                // eye and eyebrow
+                buffer = floodFill(buffer, 360, 180, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 403, 212, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 399, 241, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 390, 258, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 390, 278, Color.WHITE, Color.DARK_GRAY);
+                
+                // nose
+                buffer = floodFill(buffer, 520, 468, Color.WHITE, Color.DARK_GRAY);
+
+                // shadow
+                buffer = floodFill(buffer, 255, 372, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 105, 576, Color.WHITE, Color.DARK_GRAY);
         };
 
         private void pic6Color(BufferedImage buffer) {
+                // hair
+                buffer = floodFill(buffer, 180, 72, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 42, 72, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 6, 426, Color.WHITE, Color.DARK_GRAY);
 
+                // eye and eye brow
+                buffer = floodFill(buffer, 360, 171, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 405, 207, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 414, 234, Color.WHITE, Color.DARK_GRAY);
+
+                // nose
+                buffer = floodFill(buffer, 520, 468, Color.WHITE, Color.DARK_GRAY);
+
+                // shadow
+                buffer = floodFill(buffer, 255, 372, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 105, 576, Color.WHITE, Color.DARK_GRAY);
         };
 
         private void pic7Color(BufferedImage buffer) {
+                // hair
+                buffer = floodFill(buffer, 165, 51, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 42, 72, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 6, 426, Color.WHITE, Color.DARK_GRAY);
 
+                // eye and eye brow
+                buffer = floodFill(buffer, 367, 147, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 396, 205, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 393, 240, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 396, 283, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 303, 243, Color.WHITE, Color.DARK_GRAY);
+
+                // nose
+                buffer = floodFill(buffer, 522, 468, Color.WHITE, Color.DARK_GRAY);
+
+                // shadow
+                buffer = floodFill(buffer, 219, 447, Color.WHITE, Color.DARK_GRAY);
         };
 
         private void pic8Color(BufferedImage buffer) {
-
+                // shadow
+                buffer = floodFill(buffer, 10, 10, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 590, 590, Color.WHITE, Color.DARK_GRAY);
         };
 
         private void pic9Color(BufferedImage buffer) {
+                // face
+                buffer = floodFill(buffer, 426, 150, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 399, 153, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 414, 175, Color.WHITE, Color.LIGHT_GRAY);
 
+                // hand 
+                buffer = floodFill(buffer, 423, 288, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 441, 351, Color.WHITE, Color.DARK_GRAY);
+
+                // leg
+                buffer = floodFill(buffer, 380, 492, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 395, 435, Color.WHITE, Color.DARK_GRAY);
+
+                // tail
+                buffer = floodFill(buffer, 258, 460, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 258, 480, Color.WHITE, Color.LIGHT_GRAY);
+                
+                // coat
+                buffer = floodFill(buffer, 390, 192, Color.WHITE, Color.LIGHT_GRAY);
+                buffer = floodFill(buffer, 390, 225, Color.WHITE, Color.LIGHT_GRAY);
+                buffer = floodFill(buffer, 408, 415, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 423, 393, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 429, 393, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 400, 363, Color.WHITE, Color.LIGHT_GRAY);
+                buffer = floodFill(buffer, 435, 393, Color.WHITE, Color.LIGHT_GRAY);
+
+                // shadow
+                buffer = floodFill(buffer, 10, 10, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 590, 590, Color.WHITE, Color.DARK_GRAY);
         };
 
         private void pic10Color(BufferedImage buffer) {
+                // shadow
+                buffer = floodFill(buffer, 10, 10, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 590, 590, Color.WHITE, Color.DARK_GRAY);
 
+                // face
+                buffer = floodFill(buffer, 159, 240, Color.WHITE, Color.DARK_GRAY);
+
+                // tail
+                buffer = floodFill(buffer, 267, 498, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 267, 508, Color.WHITE, Color.LIGHT_GRAY);
+                
+                // coat
+                buffer = floodFill(buffer, 189, 255, Color.WHITE, Color.LIGHT_GRAY);
+                buffer = floodFill(buffer, 189, 360, Color.WHITE, Color.LIGHT_GRAY);
+                buffer = floodFill(buffer, 155, 471, Color.WHITE, Color.LIGHT_GRAY);
+                
         };
 
         private void pic11Color(BufferedImage buffer) {
+                // head
+                buffer = floodFill(buffer, 309, 150, Color.WHITE, Color.DARK_GRAY);
 
+                // hand
+                buffer = floodFill(buffer, 363, 255, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 275, 234, Color.WHITE, Color.DARK_GRAY);
+
+                // body 
+                buffer = floodFill(buffer, 290, 290, Color.WHITE, Color.DARK_GRAY);
+
+                // tail
+                buffer = floodFill(buffer, 320, 320, Color.WHITE, Color.DARK_GRAY);
+
+                // scarf
+                buffer = floodFill(buffer, 312, 186, Color.WHITE, Color.LIGHT_GRAY);
+
+                // jeans
+                buffer = floodFill(buffer, 324, 339, Color.WHITE, Color.LIGHT_GRAY);
+                buffer = floodFill(buffer, 312, 300, Color.WHITE, Color.GRAY);
+
+                // boots
+                buffer = floodFill(buffer, 290, 468, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 339, 468, Color.WHITE, Color.DARK_GRAY);
+
+                // ground
+                buffer = floodFill(buffer, 590, 590, Color.WHITE, Color.GRAY);
         };
 
         private void pic12Color(BufferedImage buffer) {
+                // hair
+                buffer = floodFill(buffer, 453, 276, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 474, 315, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 492, 342, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 492, 369, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 478, 405, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 469, 430, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 402, 279, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 351, 205, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 351, 285, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 510, 312, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 335, 333, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 273, 294, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 282, 315, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 243, 342, Color.WHITE, Color.DARK_GRAY);
 
+                // eye and eyebrow
+                buffer = floodFill(buffer, 351, 405, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 443, 428, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 449, 403, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 381, 380, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 384, 382, Color.WHITE, Color.DARK_GRAY);
+
+                // jacket
+                buffer = floodFill(buffer, 228, 420, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 186, 450, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 120, 486, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 150, 504, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 192, 564, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 225, 500, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 240, 545, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 360, 516, Color.WHITE, Color.DARK_GRAY);
+                buffer = floodFill(buffer, 270, 546, Color.WHITE, Color.DARK_GRAY);
+
+                // background
+                buffer = floodFill(buffer, 10, 10, Color.WHITE, Color.GRAY);
         };
 
         // Basic pixel plotting utility
