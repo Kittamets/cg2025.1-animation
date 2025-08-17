@@ -31,6 +31,8 @@ public class Assignment1 extends JPanel implements Runnable {
                 (new Thread(m)).start();
         }
 
+        double elapsedSeconds = 0; // Timer
+
         @Override
         public void run() {
                 double lastTime = System.currentTimeMillis();
@@ -43,6 +45,8 @@ public class Assignment1 extends JPanel implements Runnable {
                         lastTime = currentTime;
 
                         // Update logic
+                        elapsedSeconds += elapsedTime / 1000.0;
+                        if ((int) elapsedSeconds % 1 == 0) { System.out.println("Elapsed time: " + (int) elapsedSeconds + "s"); }
 
                         // Display
                         repaint();
@@ -66,8 +70,14 @@ public class Assignment1 extends JPanel implements Runnable {
                 g2d.setColor(Color.BLACK);
 
                 // Drawing and coloring frame
+                if ((int) elapsedSeconds % 2 == 0) {
+                        pic7(g2d);
+                } 
+                else {
+                        pic12(g2d);
+                }
+
                 // pic1(g2d);
-                // pic1Color(buffer);
                 // pic2(g2d);
                 // pic3(g2d);
                 // pic4(g2d);
@@ -78,7 +88,7 @@ public class Assignment1 extends JPanel implements Runnable {
                 // pic9(g2d);
                 // pic10(g2d);
                 // pic11(g2d);
-                pic12(g2d);
+                // pic12(g2d);
 
                 g.drawImage(buffer, 0, 0, null);
         }
