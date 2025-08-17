@@ -10037,6 +10037,8 @@ public class Assignment1 extends JPanel implements Runnable {
                 bresenhamLine(g2d, 0.0000, 0.0000, 0.0000, 600.0000);
                 bresenhamLine(g2d, 600.0000, 0.0000, 600.0000, 600.0000);
                 bresenhamLine(g2d, 0.0000, 600.0000, 600.0000, 600.0000);
+
+                midpointEllipse(g2d, 300, 250, 25, 25);
         }
 
         private void pic11(Graphics2D g2d) {
@@ -12896,6 +12898,9 @@ public class Assignment1 extends JPanel implements Runnable {
                 buffer = floodFill(buffer, 189, 255, Color.WHITE, Color.LIGHT_GRAY);
                 buffer = floodFill(buffer, 189, 360, Color.WHITE, Color.LIGHT_GRAY);
                 buffer = floodFill(buffer, 155, 471, Color.WHITE, Color.LIGHT_GRAY);
+
+                // spirit
+                buffer = floodFill(buffer, 301, 251, Color.WHITE, Color.GRAY);
                 
         };
 
