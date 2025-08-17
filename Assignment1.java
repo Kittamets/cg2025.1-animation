@@ -19,19 +19,20 @@ public class Assignment1 extends JPanel implements Runnable {
                 Assignment1 m = new Assignment1();
                 JFrame f = new JFrame();
 
-                // Viewport
-                f.add(m); // add panel to frame
-                f.setTitle("ASSIGNMENT 1 : WHAT IF I REBORNED"); // title
-                f.setSize(600, 600); // set size
-                f.setResizable(true); // make it unresizable
-                f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // make it close when exit
-                f.setVisible(true); // make it visible
+                // Define viewport
+                f.add(m); // Add panel to frame
+                f.setTitle("ASSIGNMENT 1 : WHAT IF I REBORNED"); // Set title
+                f.setSize(600, 600); // Set size
+                f.setResizable(true); // Make it unresizable
+                f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Make it close when exit
+                f.setVisible(true); // Make it visible
 
                 // Animation
                 (new Thread(m)).start();
         }
 
-        double elapsedSeconds = 0; // Timer
+        private double elapsedSeconds = 0; // Timer
+        private int lastPrintedSecond = -1; 
 
         @Override
         public void run() {
@@ -46,8 +47,10 @@ public class Assignment1 extends JPanel implements Runnable {
 
                         // Update logic
                         elapsedSeconds += elapsedTime / 1000.0;
-                        if ((int) elapsedSeconds % 1 == 0) {
-                                System.out.println("Elapsed time: " + (int) elapsedSeconds + "s");
+                        int wholeTime = (int) elapsedSeconds;
+                        if (wholeTime != lastPrintedSecond) {
+                                System.out.println("Elapsed time: " + wholeTime + "s");
+                                lastPrintedSecond = wholeTime;
                         }
 
                         // Display
@@ -12646,14 +12649,19 @@ public class Assignment1 extends JPanel implements Runnable {
 
         };
 
+        // Basic pixel plotting utility
         private void plot(Graphics g, int x, int y, int size) {
+                // Draw a filled rectangle (square pixel) at (x, y)
                 g.fillRect(x, y, size, size);
         }
 
+        // Draws a cubic Bézier curve using parametric equation
         private void bezierCurve(Graphics2D g2, double x1, double y1, double x2, double y2, double x3, double y3,
                         double x4,
                         double y4, int size) {
+                // t ranges from 0 to 1 in small increments (0.001 gives smooth curve)
                 for (double t = 0; t <= 1; t += 0.001) {
+                        // Parametric formula for cubic Bézier
                         double xt = Math.pow(1 - t, 3) * x1 +
                                         3 * Math.pow(1 - t, 2) * t * x2 +
                                         3 * (1 - t) * Math.pow(t, 2) * x3 +
@@ -12664,52 +12672,12 @@ public class Assignment1 extends JPanel implements Runnable {
                                         3 * (1 - t) * Math.pow(t, 2) * y3 +
                                         Math.pow(t, 3) * y4;
 
+                        // Draw a small square at each calculated (x, y)
                         g2.fillRect((int) Math.round(xt), (int) Math.round(yt), size, size);
                 }
         }
 
-        private void bresenhamLine(Graphics2D g, int x1, int y1, int x2, int y2) {
-
-                int dx = Math.abs(x2 - x1);
-                int dy = Math.abs(y2 - y1);
-
-                int sx = (x1 < x2) ? 1 : -1;
-                int sy = (y1 < y2) ? 1 : -1;
-                boolean isSwap = false;
-
-                if (dy > dx) {
-                        int tmp = dx;
-                        dy = dx;
-                        dx = tmp;
-                        isSwap = true;
-                }
-                int D = 2 * dy - dx;
-
-                int x = x1;
-                int y = y1;
-
-                for (int i = 1; i <= dx; i++) {
-                        plot(g, x, y, 1);
-                        if (D >= 0) {
-                                if (isSwap) {
-                                        x += sx;
-                                } else {
-                                        y += sy;
-                                }
-
-                                D -= 2 * dx;
-                        }
-
-                        if (isSwap) {
-                                y += sy;
-                        } else {
-                                x += sx;
-                        }
-
-                        D += 2 * dy;
-                }
-        }
-
+        // Implements Bresenham's Line Algorithm
         private void bresenhamLine(Graphics2D g, double x1, double y1, double x2, double y2) {
                 // Calculate the differences
                 double dx = Math.abs(x2 - x1);
@@ -12739,7 +12707,6 @@ public class Assignment1 extends JPanel implements Runnable {
                 for (int i = 0; i <= dx; i++) {
                         // Convert x, y to integer for plotting
                         g.fillRect((int) Math.round(x), (int) Math.round(y), 3, 3);
-                        // plot(g, Math.round(x), Math.round(y), 1);
 
                         // Update the decision variable
                         if (D >= 0) {
@@ -12762,6 +12729,7 @@ public class Assignment1 extends JPanel implements Runnable {
                 }
         }
 
+        // Flood fill algorithm using queue (Breadth-First Search style)
         public static BufferedImage floodFill(BufferedImage m, int x, int y, Color targetColor, Color replaceColor) {
                 Queue<int[]> q = new LinkedList<>();
                 q.add(new int[] { x, y });
@@ -12770,12 +12738,15 @@ public class Assignment1 extends JPanel implements Runnable {
                 int replaceRGB = replaceColor.getRGB();
 
                 int[] currentPos;
+
+                // Process pixels until queue is empty
                 while (!q.isEmpty()) {
                         currentPos = q.poll();
 
                         int x1 = currentPos[0];
                         int y1 = currentPos[1];
 
+                        // If pixel matches target color, replace it
                         if (m.getRGB(x1, y1) == targetRGB) {
                                 m.setRGB(x1, y1, replaceRGB);
 
@@ -12804,10 +12775,12 @@ public class Assignment1 extends JPanel implements Runnable {
                 return m;
         }
 
+        // Check if coordinate is inside the 601x601 canvas
         public static boolean isInBound(int x, int y) {
                 return x >= 0 && y > 0 && x < 601 && y < 601;
         }
 
+        // Midpoint ellipse drawing algorithm
         private void midpointEllipse(Graphics g, int xc, int yc, int a, int b) {
                 int x, y, d;
                 int a2 = a * a, b2 = b * b;
@@ -12819,6 +12792,7 @@ public class Assignment1 extends JPanel implements Runnable {
                 d = Math.round(b2 - a2 * b + a2 / 4);
 
                 while (b2 * x <= a2 * y) {
+                        // Plot 4 symmetric points
                         plot(g, x + xc, y + yc, 3);
                         plot(g, -x + xc, y + yc, 3);
                         plot(g, x + xc, -y + yc, 3);
@@ -12839,6 +12813,7 @@ public class Assignment1 extends JPanel implements Runnable {
                 d = Math.round(a2 - b2 * a + b2 / 4);
 
                 while (b2 * x >= a2 * y) {
+                         // Plot 4 symmetric points
                         plot(g, x + xc, y + yc, 3);
                         plot(g, -x + xc, y + yc, 3);
                         plot(g, x + xc, -y + yc, 3);
@@ -12854,12 +12829,14 @@ public class Assignment1 extends JPanel implements Runnable {
                 }
         }
 
+        // Midpoint circle drawing algorithm
         private void midpointCircle(Graphics g, int xc, int yc, int r) {
                 int x = 0;
                 int y = r;
-                int d = 1 - r;
+                int d = 1 - r; // decision parameter
 
                 while (x <= y) {
+                        // Plot 8 symmetric points for each (x, y)
                         plot(g, x + xc, y + yc, 3);
                         plot(g, -x + xc, y + yc, 3);
                         plot(g, x + xc, -y + yc, 3);
