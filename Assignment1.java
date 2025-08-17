@@ -78,73 +78,96 @@ public class Assignment1 extends JPanel implements Runnable {
                 if (elapsedSeconds < 0.5) {
                         pic1(g2d);
                         pic1Color(buffer);
-                } else if (elapsedSeconds < 1.0) {
+                } 
+
+                else if (elapsedSeconds < 1.0) {
                         pic2(g2d);
                         pic2Color(buffer);
-                } else if (elapsedSeconds < 1.5) {
+                } 
+
+                else if (elapsedSeconds < 1.5) {
                         pic3(g2d);
                         pic3Color(buffer);
-                } else if (elapsedSeconds < 2.0) {
+                } 
+
+                else if (elapsedSeconds < 2.0) {
                         pic4(g2d);
                         pic4Color(buffer);
-                } else if (elapsedSeconds < 2.5) {
+                } 
+
+                else if (elapsedSeconds < 2.5) {
                         pic5(g2d);
                         pic5Color(buffer);
-                } else if (elapsedSeconds < 3.0) {
+                } 
+
+                else if (elapsedSeconds < 3.0) {
                         pic6(g2d);
                         pic6Color(buffer);
-                } else if (elapsedSeconds < 3.5) {
+                } 
+
+                else if (elapsedSeconds < 3.5) {
                         pic5(g2d);
                         pic5Color(buffer);
-                } else if (elapsedSeconds < 4.0) {
+                } 
+
+                else if (elapsedSeconds < 4.0) {
                         pic6(g2d);
                         pic6Color(buffer);
-                } else if (elapsedSeconds < 4.5) {
+                } 
+
+                else if (elapsedSeconds < 4.5) {
                         pic5(g2d);
                         pic5Color(buffer);
-                } else if (elapsedSeconds < 5.0) {
+                } 
+
+                else if (elapsedSeconds < 5.0) {
                         pic6(g2d);
                         pic6Color(buffer);
-                } else if (elapsedSeconds < 5.5) {
+                } 
+
+                else if (elapsedSeconds < 5.5) {
                         pic7(g2d);
                         pic7Color(buffer);
-                } else if (elapsedSeconds < 6.0) {
+                } 
+
+                else if (elapsedSeconds < 6.0) {
                         pic8(g2d);
                         pic8Color(buffer);
-                } else if (elapsedSeconds < 7.0) {
+                } 
+
+                else if (elapsedSeconds < 7.0) {
                         pic9(g2d);
                         pic9Color(buffer);
-                } else if (elapsedSeconds < 7.5) {
+                } 
+
+                else if (elapsedSeconds < 7.5) {
                         pic8(g2d);
                         pic8Color(buffer);
-                } else if (elapsedSeconds < 8.5) {
+                } 
+
+                else if (elapsedSeconds < 8.5) {
                         pic10(g2d);
                         pic10Color(buffer);
-                } else if (elapsedSeconds < 9.0) {
+                } 
+
+                else if (elapsedSeconds < 9.0) {
                         pic8(g2d);
                         pic8Color(buffer);
-                } else if (elapsedSeconds < 10.0) {
-                        pic11(g2d);
-                        pic11Color(buffer);
-                } else if (elapsedSeconds < 11.0) {
-                        pic12(g2d);
-                        pic12Color(buffer);
-                } else {
-                        elapsedSeconds = 0; // Reset timer
                 }
 
-                // pic1(g2d); pic1Color(buffer);
-                // pic2(g2d); pic2Color(buffer);
-                // pic3(g2d); pic3Color(buffer);
-                // pic4(g2d); pic4Color(buffer);
-                // pic5(g2d); pic5Color(buffer);
-                // pic6(g2d); pic6Color(buffer);
-                // pic7(g2d); pic7Color(buffer);
-                // pic8(g2d); pic8Color(buffer);
-                // pic9(g2d); pic9Color(buffer);
-                // pic10(g2d); pic10Color(buffer);
-                // pic11(g2d); pic11Color(buffer);
-                // pic12(g2d); pic12Color(buffer);
+                else if (elapsedSeconds < 10.0) {
+                        pic11(g2d);
+                        pic11Color(buffer);
+                } 
+                
+                else if (elapsedSeconds < 11.0) {
+                        pic12(g2d);
+                        pic12Color(buffer);
+                } 
+
+                else {
+                        elapsedSeconds = 0; // Reset timer
+                }
 
                 g.drawImage(buffer, 0, 0, null);
         }
@@ -13121,33 +13144,6 @@ public class Assignment1 extends JPanel implements Runnable {
                                 d = d - twoB2 * x;
                         }
                         d = d + twoA2 * y + a2;
-                }
-        }
-
-        // Midpoint circle drawing algorithm
-        private void midpointCircle(Graphics g, int xc, int yc, int r) {
-                int x = 0;
-                int y = r;
-                int d = 1 - r; // decision parameter
-
-                while (x <= y) {
-                        // Plot 8 symmetric points for each (x, y)
-                        plot(g, x + xc, y + yc, 3);
-                        plot(g, -x + xc, y + yc, 3);
-                        plot(g, x + xc, -y + yc, 3);
-                        plot(g, -x + xc, -y + yc, 3);
-                        plot(g, y + xc, x + yc, 3);
-                        plot(g, -y + xc, x + yc, 3);
-                        plot(g, y + xc, -x + yc, 3);
-                        plot(g, -y + xc, -x + yc, 3);
-
-                        x++;
-
-                        if (d >= 0) {
-                                y--;
-                                d = d - 2 * y;
-                        }
-                        d = d + 2 * x + 1;
                 }
         }
 }
